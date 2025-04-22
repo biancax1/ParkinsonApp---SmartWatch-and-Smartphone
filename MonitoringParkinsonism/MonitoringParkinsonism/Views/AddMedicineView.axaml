@@ -1,0 +1,131 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MonitoringParkinsonism.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MonitoringParkinsonism.Views.AddMedicineView"
+             x:DataType="vm:AddMedicineViewModel">
+
+    <Design.DataContext>
+        <vm:AddMedicineViewModel/>
+    </Design.DataContext>
+
+	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+			<StackPanel Margin="20" Spacing="15">
+
+				<StackPanel>
+					<TextBlock Text="Názov lieku:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+					<TextBox Text="{Binding name}" Watermark="Názov lieku" Width="300" Height="35" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" FontSize="20"/>
+				</StackPanel>
+
+				<StackPanel Margin="0, 0, 0, 10">
+					<TextBlock Text="Od akého dátumu brať liek:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+					<DatePicker SelectedDate="{Binding initialDate}" BorderBrush="Gray" BorderThickness="1" FontSize="20">
+						<DatePicker.Styles>
+							<Style Selector="TextBlock">
+								<Setter Property="FontSize" Value="20"/>
+							</Style>
+						</DatePicker.Styles>
+					</DatePicker>
+				</StackPanel>
+
+				<Border Background="#EBEDFF" Padding="10" Margin="0,10,0,0" BorderBrush="Gray" BorderThickness="1">
+					<StackPanel Spacing="10">
+						<!-- týždeň -->
+						<StackPanel Margin="0, 0, 0, 10">
+							<TextBlock Text="Deň v týždni, kedy ho mám brať:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+							<DatePicker SelectedDate="{Binding dayOfWeekDateTime}" DayFormat="dddd" MonthVisible="False" YearVisible="False" Width="300" Height="35" BorderBrush="Gray" BorderThickness="1" FontSize="20">
+								<DatePicker.Styles>
+									<Style Selector="TextBlock">
+										<Setter Property="FontSize" Value="20"/>
+									</Style>
+								</DatePicker.Styles>
+							</DatePicker>
+						</StackPanel>
+
+						<!-- čas -->
+						<StackPanel Margin="0, 0, 0, 10">
+							<TextBlock Text="Čas, kedy ho mám brať:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+							<TimePicker ClockIdentifier="24HourClock" MinuteIncrement="1" SelectedTime="{Binding Time}" Width="300" Height="35" BorderBrush="Gray" BorderThickness="1" FontSize="20">
+								<TimePicker.Styles>
+									<Style Selector="TextBlock">
+										<Setter Property="FontSize" Value="20"/>
+									</Style>
+								</TimePicker.Styles>
+							</TimePicker>
+						</StackPanel>
+
+						<!-- množstvo (quantity) -->
+						<StackPanel Margin="0, 0, 0, 10">
+							<TextBlock Text="Množstvo v 1 dávke:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+							<NumericUpDown Value="{Binding quantity}" Increment="1" FormatString="0.00" Minimum="0" Watermark="Množstvo v 1 dávke" Width="300" Height="35" BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" FontSize="20"/>
+						</StackPanel>
+
+						<!-- jednotka (unit) -->
+						<StackPanel Margin="0, 0, 0, 10">
+							<TextBlock Text="Vyberte jednotku:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" Margin="0,0,0,5"/>
+							<ComboBox SelectedIndex="{Binding unit}" FontSize="20">
+								<ComboBoxItem Content="Počet tabliet" FontSize="20"/>
+								<ComboBoxItem Content="Mililitre" FontSize="20"/>
+								<ComboBoxItem Content="Kvapky" FontSize="20"/>
+								<ComboBoxItem Content="Miligramy" FontSize="20"/>
+								<ComboBoxItem Content="Počet inhalácii (vdychov)" FontSize="20"/>
+								<ComboBoxItem Content="Počet vstrekov" FontSize="20"/>
+								<ComboBoxItem Content="Centimetre (ďĺžka vytlačenej masti)" FontSize="20"/>
+								<ComboBoxItem Content="Počet rektálnych/vaginálnych čapíkov" FontSize="20"/>
+							</ComboBox>
+						</StackPanel>
+
+						<Button Name="AddSchedule"
+								Classes="LiekButton"
+								Content="Pridať čas"
+								Command="{Binding AddScheduleToMedicineCommand}"
+								HorizontalAlignment="Center"
+								Height="40"
+								Margin="0,10,0,0"
+								FontSize="20"/>
+					</StackPanel>
+				</Border>
+				
+				
+	 <!-- vypisanie schedules -->
+		 <ItemsControl ItemsSource="{Binding Schedules}">
+			 <ItemsControl.ItemTemplate>
+				 <DataTemplate>
+					 <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="0, 10, 0, 0" Padding="10" Background="#f0f0f0">
+						 <StackPanel Spacing="5">
+							 <!-- den -->
+							 <StackPanel Orientation="Horizontal" Spacing="10">
+								 <TextBlock Text="🗓" FontSize="20"/>
+								 <TextBlock Text="{Binding dayOfWeek}" FontSize="20" FontWeight="Bold"/>
+							 </StackPanel>
+
+							 <!-- cas -->
+							 <StackPanel Orientation="Horizontal" Spacing="10">
+								 <TextBlock Text="⏰" FontSize="20"/>
+								 <TextBlock Text="{Binding time}" FontSize="20" FontWeight="Bold"/>
+							 </StackPanel>
+
+							 <!-- quantity -->
+							 <StackPanel Orientation="Horizontal" Spacing="10">
+								 <TextBlock Text="💊" FontSize="20"/>
+								 <TextBlock Text="{Binding quantity}" FontSize="20" FontWeight="Bold"/>
+							 </StackPanel>
+
+							 <!-- unit -->
+							 <StackPanel Orientation="Horizontal" Spacing="10">
+								 <TextBlock Text="📏" FontSize="20"/>
+								 <TextBlock Text="{Binding medicineUnit}" FontSize="20" FontWeight="Bold"/>
+							 </StackPanel>
+						 </StackPanel>
+					 </Border>
+				 </DataTemplate>
+		     </ItemsControl.ItemTemplate> 
+		 </ItemsControl>
+			 
+	 <!-- potvrd -->
+<Button Classes="LiekButton" Content="Potvrdiť" Command="{Binding AddMedicineAndGoBackCommand}" HorizontalAlignment="Center" Width="100" Height="40" Margin="0,20,0,0"/>
+		</StackPanel>
+</ScrollViewer>
+</UserControl>

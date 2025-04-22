@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MonitoringParkinsonism.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MonitoringParkinsonism.Views.CalendarView"
+			 x:DataType="vm:CalendarViewModel">
+	<Design.DataContext>
+		<vm:CalendarViewModel/>
+	</Design.DataContext>
+
+	<UserControl.Styles>
+		<Style Selector="Calendar">
+			<Setter Property="Background" Value="#7F74B3"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+
+		</Style>
+
+		<Style Selector="CalendarDayButton">
+			<Setter Property="Background" Value="#E6E6FA"/>
+			<Setter Property="Foreground" Value="#000000"/>
+			<Setter Property="BorderBrush" Value="#D8BFD8"/>
+			<Setter Property="CornerRadius" Value="5"/>
+			<Setter Property="Padding" Value="5"/>
+			<Setter Property="Margin" Value="2"/>
+		</Style>
+
+		<Style Selector="CalendarDayButton:pressed, CalendarDayButton:selected">
+			<Setter Property="Background" Value="#9370DB"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="#4B0082"/>
+		</Style>
+
+		<Style Selector="CalendarButton">
+			<Setter Property="Background" Value="#7F74B3"/>
+			<Setter Property="Foreground" Value="#000000"/>
+			<Setter Property="BorderBrush" Value="#D8BFD8"/>
+			<Setter Property="CornerRadius" Value="5"/>
+			<Setter Property="Padding" Value="5"/>
+			<Setter Property="Margin" Value="2"/>
+		</Style>
+
+		<Style Selector="CalendarButton:pressed">
+			<Setter Property="Background" Value="#9370DB"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderBrush" Value="#4B0082"/>
+		</Style>
+		
+	</UserControl.Styles>
+
+	<!-- scrollovanie -->
+	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+			<!-- pridaj lieky -->
+			<Button Classes="LiekButton" Tag="Liek" Content="Pridaj liek" Command="{Binding AddMedicine}" Margin="0, 20, 0, 10"/>
+
+			<StackPanel Name="stackpanel_lieky" Orientation="Vertical"/>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

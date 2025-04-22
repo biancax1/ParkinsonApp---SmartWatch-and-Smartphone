@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MonitoringParkinsonism.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MonitoringParkinsonism.Views.HomeView"
+             x:DataType="vm:HomeViewModel">
+
+	<Design.DataContext>
+		<vm:HomeViewModel/>
+	</Design.DataContext>
+
+	<UserControl.Styles>
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="White" Padding="10" VerticalAlignment="Top" Margin="0,30,0,0">
+			<StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+
+				<TextBlock Text="Vitajte v aplikácii na monitorovanie symptómov"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Foreground="Black"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,15"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+
+				<TextBlock Text="Základné položky v menu:"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           Foreground="Black"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5"
+                           TextWrapping="Wrap"/>
+
+				<!-- 1 -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+					<Border Background="#7F74B3" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Button Tag="Main" Classes="MenuButton">
+							<Image Source="/Assets/home.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Button>
+					</Border>
+					<TextBlock Foreground="Black" VerticalAlignment="Center" Margin="10,0" TextWrapping="Wrap" MaxWidth="300" FontSize="20">
+						<TextBlock.Inlines>
+							<Run Text="Domovská stránka" FontWeight="Bold"/>
+							<Run Text=" - informácie o používaní aplikácie"/>
+						</TextBlock.Inlines>
+					</TextBlock>
+				</StackPanel>
+
+				<!-- 2 -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+					<Border Background="#7F74B3" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Button Tag="Calendar" Classes="MenuButton">
+							<Image Source="/Assets/calendar.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Button>
+					</Border>
+					<TextBlock Foreground="Black" VerticalAlignment="Center" Margin="10,0" TextWrapping="Wrap" MaxWidth="300" FontSize="20">
+						<TextBlock.Inlines>
+							<Run Text="Kalendár" FontWeight="Bold"/>
+							<Run Text=" - miesto na zadávanie a prehľad liekov"/>
+						</TextBlock.Inlines>
+					</TextBlock>
+				</StackPanel>
+
+				<!-- 3 -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+					<Border Background="#7F74B3" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Button Tag="Test" Classes="MenuButton">
+							<Image Source="/Assets/diagram.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Button>
+					</Border>
+					<TextBlock Foreground="Black" VerticalAlignment="Center" Margin="10,0" TextWrapping="Wrap" MaxWidth="300" FontSize="20">
+						<TextBlock.Inlines>
+							<Run Text="Grafy" FontWeight="Bold"/>
+							<Run Text=" - prehľad pre lekára o meraniach z inteligentných hodiniek"/>
+						</TextBlock.Inlines>
+					</TextBlock>
+				</StackPanel>
+
+				<!-- 4 -->
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
+					<Border Background="#7F74B3" Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center">
+						<Button Tag="Notifikacia" Classes="MenuButton">
+							<Image Source="/Assets/alarm.png" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Button>
+					</Border>
+					<TextBlock Foreground="Black" VerticalAlignment="Center" Margin="10,0" TextWrapping="Wrap" MaxWidth="300" FontSize="20">
+						<TextBlock.Inlines>
+							<Run Text="Notifikácia" FontWeight="Bold"/>
+							<Run Text=" - možnosť odkliknúť, že liek bol užitý"/>
+						</TextBlock.Inlines>
+					</TextBlock>
+				</StackPanel>
+				
+				<!--
+				<Button Command="{Binding Nuke}">
+					Nuke
+				</Button>
+				<Button Command="{Binding PrintAllDoses}">
+					Print all doses
+				</Button>
+				-->
+				
+				<TextBlock Text="{Binding Counter}" Foreground="Red" HorizontalAlignment="Center" Margin="10,20,10,0" FontSize="20"/>
+			</StackPanel>
+		</Border>
+	</Grid>
+</UserControl>

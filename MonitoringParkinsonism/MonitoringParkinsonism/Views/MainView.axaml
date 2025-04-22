@@ -1,0 +1,101 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:MonitoringParkinsonism.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MonitoringParkinsonism.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+
+	<UserControl.Styles>
+
+		<Style Selector="Button.MenuButton">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="10,5"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
+
+		<Style Selector="Button.LiekButton">
+			<Setter Property="Background" Value="#7F74B3"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="15,8"/>
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="8"/>
+		</Style>
+
+		<Style Selector="Button.BigLiekButton">
+			<Setter Property="Background" Value="#7F74B3"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Padding" Value="15,10"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="10"/>
+		</Style>
+		
+		<Style Selector="Button.SelectionButton">
+			<Setter Property="Background" Value="Violet"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="Padding" Value="10,5"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
+
+		<Style Selector="TextBlock">
+			<Setter Property="Margin" Value="10,0,0,0"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="#7F74B3" Padding="10" VerticalAlignment="Top">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<Image Height="40" Width="40" Margin="0,0,10,0" Source="/Assets/stuzka.png"/>
+				<Button Tag="Main" Classes="MenuButton" Command="{Binding ChangeToHomeView}">
+					<Image Source="/Assets/home.png" Width="30" Margin="5,0,5,0" Height="30" />
+				</Button>
+				<Button Tag="Calendar" Classes="MenuButton" Command="{Binding ChangeToCalendarView}">
+					<Image Source="/Assets/calendar.png" Width="25" Margin="5,0,5,0" Height="25" />
+				</Button>
+				<Button Tag="Test" Classes="MenuButton" Command="{Binding ChangeToTestView}">
+					<Image Source="/Assets/diagram.png" Width="25" Margin="5,0,5,0"  Height="25" />
+				</Button>
+				<Button Tag="Notifikacia" Classes="MenuButton" Command="{Binding ChangeToNotificationView}">
+					<Image Source="/Assets/alarm.png" Width="25" Margin="5,0,5,0" Height="25" />
+				</Button>
+				<TextBlock Text="{Binding Counter}" Foreground="Red"/>
+			</StackPanel>
+		</Border>
+
+		<TransitioningContentControl Content="{Binding CurrentPage}" Grid.Row="1" />
+	</Grid>
+</UserControl> 
